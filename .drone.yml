@@ -11,7 +11,7 @@ steps:
     commands:
       - exit 0
       - dotnet sonarscanner begin
-          /k:"easv-devops_CDWeatherExample_AY4d5zUxEVvRW2O60EXK"
+          /k:"easv-devops_CDWeatherExample_MD_AY5XD41aEVvRW2O60EYD"
           /d:sonar.host.url="http://sonar.setgo.dk:9000"  
           /d:sonar.token="$SONARSECRET"
           /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
@@ -38,7 +38,7 @@ steps:
         from_secret: DockerPassword
       context: src
       dockerfile: src/WeatherAPI/Dockerfile
-      repo: boulundeasv/cd-weather-api
+      repo: midr/cd-weather-api
       tags: 
         - staging
 
@@ -51,14 +51,14 @@ steps:
         from_secret: DockerPassword
       context: src
       dockerfile: src/WeatherFrontend/Dockerfile
-      repo: boulundeasv/cd-weather-web
+      repo: midr/cd-weather-web
       tags: 
         - staging
 
   - name: trigger update
     image: curlimages/curl
     commands:
-      - "curl --fail -X GET 'http://84.247.167.129:8080/v1/update' -H 'Authorization: Bearer mytoken'" # Must match the token defined in docker-compose.yml
+      - "curl --fail -X GET 'http://20.107.179.119:8080/v1/update' -H 'Authorization: Bearer mytoken'" # Must match the token defined in docker-compose.yml
       - sleep 10
     depends_on:
       - publish api

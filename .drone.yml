@@ -57,7 +57,8 @@ steps:
   - name: trigger update
     image: curlimages/curl
     commands:
-      - "curl --fail -X GET 'http://20.107.179.119:8080/v1/update' -H 'Authorization: Bearer mytoken'" # Must match the token defined in docker-compose.yml
+      # Must match the token defined in docker-compose.yml
+      - "curl --fail -X GET 'http://20.107.179.119:8080/v1/update' -H 'Authorization: Bearer mytoken'"
       - sleep 10
     depends_on:
       - publish api

@@ -64,7 +64,7 @@ steps:
       - publish web
 
   - name: update database
-    image: flyway/flyway:10
+    image: flyway/flyway
     commands:
       - flyway migrate
           -url=jdbc:mariadb://20.107.179.119:3306/forecasts
